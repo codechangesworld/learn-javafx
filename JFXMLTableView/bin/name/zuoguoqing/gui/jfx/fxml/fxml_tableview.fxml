@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.geometry.Pos?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.collections.*?>
+<?import name.zuoguoqing.gui.jfx.fxml.*?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Button?>
+
+
+<GridPane xmlns:fx="http://javafx.com/fxml/1" alignment="CENTER"
+	hgap="10" vgap="10" fx:controller="name.zuoguoqing.gui.jfx.fxml.FXMLTableViewController">
+	<padding>
+		<Insets left="10" right="10" top="10" bottom="10"></Insets>
+	</padding>
+
+	<Label text="Address Book" style="-fx-font: NORMAL 20 Tahoma;"
+		GridPane.columnIndex="0" GridPane.rowIndex="0" />
+
+	<TableView fx:id="tableView" GridPane.columnIndex="0"
+		GridPane.rowIndex="1">
+		<columns>
+			<TableColumn fx:id="firstNameColumn" text="First Name" prefWidth="100">
+				<cellValueFactory>
+					<PropertyValueFactory property="firstName" />
+				</cellValueFactory>
+			</TableColumn>
+			<TableColumn text="Last Name" prefWidth="100">
+				<cellValueFactory>
+					<PropertyValueFactory property="lastName" />
+				</cellValueFactory>
+			</TableColumn>
+			<TableColumn text="Email Address" prefWidth="200">
+				<cellValueFactory>
+					<PropertyValueFactory property="email" />
+				</cellValueFactory>
+			</TableColumn>
+		</columns>
+
+		<items>
+			<FXCollections fx:factory="observableArrayList">
+				<Person email="jacob.smith@example.com" firstName="Jacob"
+					lastName="Smith" />
+				<Person email="isabella.johnson@example.com" firstName="Isabella"
+					lastName="Johnson" />
+				<Person email="ethan.williams@example.com" firstName="Ethan"
+					lastName="Williams" />
+				<Person email="emma.jones@example.com" firstName="Emma"
+					lastName="Jones" />
+				<Person email="michael.brown@example.com" firstName="Michael"
+					lastName="Brown" />
+			</FXCollections>
+		</items>
+
+        <sortOrder>
+            <fx:reference source="firstNameColumn"/>
+        </sortOrder>
+
+	</TableView>
+	
+	<HBox alignment="BOTTOM_RIGHT" spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="2">
+	   <TextField fx:id="firstNameField" promptText="First Name" prefWidth="90"/>
+	   <TextField fx:id="lastNameField" promptText="Last Name" prefWidth="90"/>
+	   <TextField fx:id="emailField" promptText="Email Address" prefWidth="150"/>
+	   <Button text="Add" onAction="#addPerson"/>
+	</HBox>
+
+</GridPane>
